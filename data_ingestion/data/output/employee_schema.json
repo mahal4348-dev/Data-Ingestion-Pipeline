@@ -1,0 +1,76 @@
+{
+  "business_purpose": "The dataset represents an organization's employee master records, capturing demographic details, branch assignments, reporting lines (managers), organizational positions, and hire dates.",
+  "target_table": "dim_employee",
+  "candidate_primary_key": [
+    "EmployeeID"
+  ],
+  "recommended_partition_column": "BranchID",
+  "columns": [
+    {
+      "column_name": "BranchID",
+      "business_meaning": "Unique identifier for the branch or office location where the employee is assigned.",
+      "recommended_data_type": "INT",
+      "nullable": false
+    },
+    {
+      "column_name": "EmployeeID",
+      "business_meaning": "Unique system identifier for the employee.",
+      "recommended_data_type": "INT",
+      "nullable": true
+    },
+    {
+      "column_name": "FirstName",
+      "business_meaning": "The first name of the employee.",
+      "recommended_data_type": "VARCHAR(50)",
+      "nullable": false
+    },
+    {
+      "column_name": "Hiredate",
+      "business_meaning": "The date the employee was hired by the organization.",
+      "recommended_data_type": "DATE",
+      "nullable": false
+    },
+    {
+      "column_name": "LastName",
+      "business_meaning": "The last name of the employee.",
+      "recommended_data_type": "VARCHAR(50)",
+      "nullable": false
+    },
+    {
+      "column_name": "ManagerID",
+      "business_meaning": "The EmployeeID of the employee's direct manager or supervisor.",
+      "recommended_data_type": "INT",
+      "nullable": true
+    },
+    {
+      "column_name": "Position",
+      "business_meaning": "The job title or role held by the employee within the organization.",
+      "recommended_data_type": "VARCHAR(50)",
+      "nullable": false
+    }
+  ],
+  "foreign_keys": [
+    {
+      "column": "ManagerID",
+      "referenced_table": "employee",
+      "referenced_column": "EmployeeID",
+      "confidence": "uncertain",
+      "reason": "Refers logically to another employee in the same table, but nulls and potential missing records prevent strict validation."
+    },
+    {
+      "column": "BranchID",
+      "referenced_table": "branch",
+      "referenced_column": "BranchID",
+      "confidence": "uncertain",
+      "reason": "Logically links to a separate branch dimension table, but the dimension table schema is not provided."
+    }
+  ],
+  "data_quality_concerns": [
+    "EmployeeID is stored as float64 and has 7 null values despite representing a unique identifier.",
+    "EmployeeID unique count (2993) is slightly less than actual count (3000), indicating potential missing or non-unique IDs aside from nulls.",
+    "ManagerID has a high null percentage (34.57%), which is expected for top-level executives but requires verification.",
+    "Hiredate is stored as a string format ('DD-MM-YYYY') and requires casting to a proper DATE type.",
+    "Position column contains typographical inconsistencies and spelling variations (e.g., 'Manager', 'Manger', 'Manage') that need data standardization.",
+    "EmployeeID and ManagerID are currently represented as floating-point numbers in string/numeric hybrid format (e.g., '1876.0') and must be cast to integers."
+  ]
+}

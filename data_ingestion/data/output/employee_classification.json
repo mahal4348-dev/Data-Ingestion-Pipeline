@@ -1,0 +1,51 @@
+{
+  "business_domain": "Banking and Financial Services",
+  "dataset_type": "Human Resources / Employee Master Data",
+  "pii_columns": [
+    "FirstName",
+    "LastName"
+  ],
+  "sensitive_columns": [],
+  "identifier_columns": [
+    "EmployeeID",
+    "BranchID",
+    "ManagerID"
+  ],
+  "business_measure_columns": [],
+  "date_columns": [
+    "Hiredate"
+  ],
+  "categorical_columns": [
+    "Position"
+  ],
+  "column_classifications": {
+    "BranchID": {
+      "classification": "identifier",
+      "reason": "Acts as a foreign key or organizational identifier linking employees to specific branch locations."
+    },
+    "EmployeeID": {
+      "classification": "identifier",
+      "reason": "Unique primary key identifier assigned to each employee."
+    },
+    "FirstName": {
+      "classification": "pii",
+      "reason": "Directly identifies an individual employee by name."
+    },
+    "Hiredate": {
+      "classification": "date",
+      "reason": "Represents the date the employee was hired, stored as a string format requiring parsing."
+    },
+    "LastName": {
+      "classification": "pii",
+      "reason": "Directly identifies an individual employee by surname."
+    },
+    "ManagerID": {
+      "classification": "identifier",
+      "reason": "Acts as a self-referencing foreign key pointing to the EmployeeID of the employee's manager."
+    },
+    "Position": {
+      "classification": "categorical",
+      "reason": "Represents the job role or title of the employee with a limited set of recurring values (subject to data quality standardization due to typos like 'Manger' and 'Manage')."
+    }
+  }
+}

@@ -1,0 +1,11 @@
+Student_ID,Name,Age,Email,Department,Marks
+101,Arun,20.0,arun@example.com,IT,85.0
+102,Priya,21.0,priya@example.com,CSE,92.0
+103,Kavin,,kavin@example.com,IT,78.0
+104,Divya,19.0,,ECE,88.0
+104,Divya,19.0,,ECE,88.0
+106,Meena,22.0,meena@example.com,CSE,
+107,Rahul,150.0,rahul@example.com,IT,95.0
+108,Anu,20.0,anu@example.com,CSE,81.0
+109,Suresh,,suresh@example.com,ECE,74.0
+110,Nila,23.0,nila@example.com,IT,89.0
